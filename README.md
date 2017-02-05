@@ -7,9 +7,9 @@ As a follow-up to your talk, here the test that we've prepared. There's no rush 
 > Imagine this is an MVP and additional features are already planned for the future. Try structuring the application in a way, that you can easily extend it when the time comes and reuse as much of the code you have already written for this MVP.
 To solve the task you can use npm, gulp, bower, angular, ui-router, bootstrap. Good luck ;)
 
-  - Create an app that displays all users (#/users) from  /data/users.json file, and a user details page (#/users/{id}).
-  - The file should be fetched through ajax, and the data needs to be displayed inside a <table />.
-  - The File should only be fetched once once the app starts. After that, we are working with users from memory.
+  - Create an app that displays all users (#/users) from  /data/users.json file, and a user details page (#/users/{id}). ok
+  - The file should be fetched through ajax, and the data needs to be displayed inside a <table />. ok
+  - The File should only be fetched once once the app starts. After that, we are working with users from memory. ok
   - The table row should be an Angular directive and each row needs to have checkboxs to select a row.
   - Every row needs to have 3 actions
        *  Show - modal that displays '{firstName} {lastName}, age:{calculateAgeHere}' (use https://angular-ui.github.io/bootstrap/#/modal)

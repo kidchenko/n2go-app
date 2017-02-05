@@ -7,4 +7,11 @@ export const UserDetailsModule = angular
     uiRouter
   ])
   .component('userDetails', UserDetailsComponent)
+  .config(($stateProvider: angular.ui.IStateProvider) => {
+    $stateProvider
+    .state('userDetails', {
+      url: '/users/:id',
+      component: 'userDetails',
+    });
+  })
   .name;

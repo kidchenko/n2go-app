@@ -1,10 +1,16 @@
-export class AllUsersService {
+export class UserService {
 
   static $inject: string[] = ['$http', '$q'];
   private users: any[];
   private deferred;
 
   constructor(private $http: angular.IHttpService, private $q: angular.IQService) { }
+
+  getUser(id: number) {
+    this.deferred = this.$q.defer();
+    this.deferred.resolve(this.users[id - 1]);
+    return this.deferred.promise;
+  }
 
   loadUsers() {
     this.deferred = this.$q.defer();

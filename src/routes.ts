@@ -5,13 +5,5 @@ function routesConfig($stateProvider: angular.ui.IStateProvider, $urlRouterProvi
   $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/');
 
-  $stateProvider
-    .state('allUsers', {
-      url: '/users',
-      component: 'allUsers'
-    })
-    .state('userDetails', {
-      url: '/users/:id',
-      component: 'userDetails'
-    });
+
 }
