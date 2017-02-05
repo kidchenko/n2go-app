@@ -1,5 +1,6 @@
 import * as angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import 'angular-ui-bootstrap';
 
 import './index.scss';
 
@@ -13,7 +14,9 @@ export const app: string = 'app';
 angular
   .module(app, [
     uiRouter,
+    'ui.bootstrap',
     ComponentsModule
   ])
   .config(routesConfig)
-  .component('app', AppComponent);
+  .component('app', AppComponent)
+  .value('EventEmitter', payload => ({ $event: payload }));

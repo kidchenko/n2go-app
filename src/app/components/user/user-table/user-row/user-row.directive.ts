@@ -4,16 +4,23 @@ export class UserRowDirective implements ng.IDirective {
 
   restrict = 'E';
 
-  scope: { user: '=' };
+  scope = {
+    user: '<',
+    onShow: '&',
+    onEdit: '&',
+    onDelete: '&'
+  };
 
-  controllerAs: '$ctrl';
+  bindToController = true;
+
+  controllerAs = '$ctrl';
 
   controller = UserRowController;
 
   template = require('./user-row.html');
 
   static instance(): ng.IDirective {
-    return new UserRowDirective;
+    return new UserRowDirective();
   }
 
 }

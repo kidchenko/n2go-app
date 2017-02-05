@@ -12,7 +12,7 @@ export class UserDetailsController {
   }
 
   $onInit() {
-    this.userService.loadUsers().then((data) => {
+    this.userService.page().then((data) => {
       this.userService.getUser((<any>this.$stateParams).id).then((data) => this.user = data);
     });
   }

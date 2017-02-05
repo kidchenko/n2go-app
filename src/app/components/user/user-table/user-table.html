@@ -9,7 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <user-row ng-repeat="user in $ctrl.users" user="user"></user-row>
+    <user-row ng-repeat="user in $ctrl.users"
+              user="user"
+              on-show="$ctrl.openShowModal($event)"
+              on-edit="$ctrl.navigateToEdit($event)"
+              on-delete="$ctrl.deleteRow($event)">
+    </user-row>
   </tbody>
   <thead></thead>
 </table>

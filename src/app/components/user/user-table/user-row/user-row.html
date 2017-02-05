@@ -1,6 +1,10 @@
 <td><input type="checkbox" ng-checked="{{$ctrl.user.selected}}"></td>
-<td>{{user.id}}</td>
-<td>{{user.firstName}}</td>
-<td>{{user.lastName}}</td>
-<td>{{user.email}}</td>
-<td>Show | Delete | <a href="users/{{user.id}}">Edit</a></td>
+<td>{{$ctrl.user.id}}</td>
+<td>{{$ctrl.user.firstName}}</td>
+<td>{{$ctrl.user.lastName}}</td>
+<td>{{$ctrl.user.email}}</td>
+<td>
+  <a href="#" ng-click="$ctrl.show($ctrl.user)">Show</a> |
+  <a href="#" ng-click="$ctrl.edit($ctrl.user)">Edit</a> |
+  <a href="#" ng-click="$ctrl.delete($ctrl.user)">Delete</a>
+</td>

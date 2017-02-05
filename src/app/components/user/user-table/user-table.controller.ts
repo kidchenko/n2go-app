@@ -9,6 +9,18 @@ export class UserTableController {
   constructor(private userService: UserService) {}
 
   $onInit() {
-    this.userService.loadUsers().then((response: any[]) => this.users = response);
+    this.userService.page().then((users: any[]) => this.users = users);
+  }
+
+  openShowModal($event) {
+    this.userService.showUser($event.user);
+  }
+
+  deleteRow($event) {
+    console.log($event);
+  }
+
+  navigateToEdit($event) {
+    console.log($event);
   }
 }
