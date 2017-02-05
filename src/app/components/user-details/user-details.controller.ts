@@ -1,8 +1,5 @@
 export class UserDetailsController {
 
-  private name = 'oi';
-  private id = 1;
-
-  constructor() { }
-
+  name = 'oi';
+  id = 1;
 }

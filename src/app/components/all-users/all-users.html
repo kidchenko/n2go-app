@@ -1,7 +1,20 @@
 <table>
-  <tbody>
+  <thead>
     <tr>
-      <td>hi</td>
+      <th>Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>E-mail</th>
+      <th>*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in $ctrl.users">
+      <td>{{user.id}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>Show | Delete | <a href="users/{{user.id}}">Edit</a></td>
     </tr>
   </tbody>
   <thead></thead>
