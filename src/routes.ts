@@ -9,5 +9,9 @@ function routesConfig($stateProvider: angular.ui.IStateProvider, $urlRouterProvi
     .state('allUsers', {
       url: '/users',
       component: 'allUsers'
+    })
+    .state('userDetails', {
+      url: '/users/{id}',
+      component: 'userDetails'
     });
 }
