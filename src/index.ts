@@ -1,5 +1,8 @@
 import * as angular from 'angular';
+
 import uiRouter from 'angular-ui-router';
+
+import 'angular-sanitize';
 import 'angular-ui-bootstrap';
 
 import './index.scss';
@@ -15,6 +18,9 @@ angular
   .module(app, [
     uiRouter,
     'ui.bootstrap',
+    'ngSanitize',
+
+
     ComponentsModule
   ])
   .config(routesConfig)

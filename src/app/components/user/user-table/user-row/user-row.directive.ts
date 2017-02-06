@@ -8,7 +8,8 @@ export class UserRowDirective implements ng.IDirective {
     user: '<',
     onShow: '&',
     onEdit: '&',
-    onDelete: '&'
+    onDelete: '&',
+    onSelect: '&'
   };
 
   bindToController = true;

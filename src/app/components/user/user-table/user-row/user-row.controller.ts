@@ -26,4 +26,11 @@ export class UserRowController {
       user
     }));
   }
+
+  toggle(user) {
+    (<any>this).onSelect(this.eventEmitter({
+      user
+    }));
+  }
+
 }

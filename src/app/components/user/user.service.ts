@@ -3,7 +3,7 @@ import { UserModalController } from './user-modal.controller';
 export class UserService {
 
   static $inject: string[] = ['$http', '$q', '$uibModal'];
-  private json: any[];
+  private json: any[] = [];
   private deferred: angular.IDeferred<any>;
 
   constructor(private $http: angular.IHttpService,
@@ -39,7 +39,7 @@ export class UserService {
     this.deferred = this.$q.defer();
 
     let start = (page - 1) * rowsPerPage + 1;
-    this.deferred.resolve(this.json.slice(start - 1, start + rowsPerPage));
+    this.deferred.resolve(this.json.slice(start - 1, (start + rowsPerPage) -1));
 
     return this.deferred.promise;
   }
@@ -48,7 +48,7 @@ export class UserService {
 
     this.deferred = this.$q.defer();
 
-    if (this.json) {
+    if (this.json.length) {
       return this.resolve(this.json);
     }
 

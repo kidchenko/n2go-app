@@ -3,7 +3,9 @@ import { UserService } from './../user.service';
 export class UserTableController {
 
   static $inject: string[] = ['UserService', '$state'];
-  users: any[];
+
+  selecteds: any[] = [];
+  users: any[] = [];
   page: number = 1;
   rowsPerPage: number = 10;
 
@@ -27,6 +29,16 @@ export class UserTableController {
     this.$state.transitionTo('userDetails', { id : $event.user.id });
   }
 
+  selectUser($event) {
+    var index = this.selecteds.indexOf($event.user);
+
+    if (index === -1) {
+      this.selecteds.push($event.user);
+    } else {
+      this.selecteds.splice(index, 1);
+    }
+  }
+
   next() {
     this.incrementPage();
     this.refresh();
@@ -37,6 +49,14 @@ export class UserTableController {
       this.decrementPage();
       this.refresh();
     }
+  }
+
+  deleteSelecteds() {
+    console.log(this.selecteds);
+  }
+
+  downloadSelecteds() {
+    console.log(this.selecteds);
   }
 
   private incrementPage() {

@@ -2,6 +2,11 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th><button class="btn" ng-click="$ctrl.deleteSelecteds()" ng-disabled="!$ctrl.selecteds.length"> Delete</button></th>
+        <th><button class="btn" ng-csv="$ctrl.selecteds" filename="users.csv" ng-disabled="!$ctrl.selecteds.length"> Download</button></th>
+      </tr>
+      <tr>
+        <th></th>
         <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
@@ -15,7 +20,8 @@
           user="user"
           on-show="$ctrl.openShowModal($event)"
           on-edit="$ctrl.navigateToEdit($event)"
-          on-delete="$ctrl.deleteRow($event)">
+          on-delete="$ctrl.deleteRow($event)"
+          on-select="$ctrl.selectUser($event)">
       </tr>
     </tbody>
     <tfoot>
