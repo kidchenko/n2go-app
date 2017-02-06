@@ -19,4 +19,7 @@ angular
   ])
   .config(routesConfig)
   .component('app', AppComponent)
-  .value('EventEmitter', payload => ({ $event: payload }));
+  .value('EventEmitter', payload => ({ $event: payload }))
+  .run((UserService) => {
+    UserService.cache();
+  });

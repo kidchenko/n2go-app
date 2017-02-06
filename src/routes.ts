@@ -1,9 +1,7 @@
 export default routesConfig;
 
 /** @ngInject */
-function routesConfig($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider, $locationProvider: angular.ILocationProvider) {
+function routesConfig($urlRouterProvider: angular.ui.IUrlRouterProvider, $locationProvider: angular.ILocationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
-  $urlRouterProvider.otherwise('/');
-
-
+  $urlRouterProvider.otherwise('/users');
 }

@@ -2,7 +2,7 @@ import { UserRowController } from './user-row.controller';
 
 export class UserRowDirective implements ng.IDirective {
 
-  restrict = 'E';
+  restrict = 'A';
 
   scope = {
     user: '<',

@@ -1,7 +1,7 @@
 
 export class UserModalController {
 
-  static $inject = ['$uibModalInstance', 'user']
+  static $inject = ['$uibModalInstance', 'user'];
 
   constructor(private $modalInstance : angular.ui.bootstrap.IModalServiceInstance, public user) { }
 

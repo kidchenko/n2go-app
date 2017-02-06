@@ -10,12 +10,12 @@ To solve the task you can use npm, gulp, bower, angular, ui-router, bootstrap. G
   - Create an app that displays all users (#/users) from  /data/users.json file, and a user details page (#/users/{id}). ok
   - The file should be fetched through ajax, and the data needs to be displayed inside a <table />. ok
   - The File should only be fetched once once the app starts. After that, we are working with users from memory. ok
-  - The table row should be an Angular directive and each row needs to have checkboxs to select a row.
+  - The table row should be an Angular directive and each row needs to have checkboxs to select a row. ok
   - Every row needs to have 3 actions
-       *  Show - modal that displays '{firstName} {lastName}, age:{calculateAgeHere}' (use https://angular-ui.github.io/bootstrap/#/modal)
-       *  Delete - removes a user from the table
-       *  Edit - Opens user detail page
-   *  The table should display 10 items per page and needs to have previous-current-next buttons on the bottom.
+       *  Show - modal that displays '{firstName} {lastName}, age:{calculateAgeHere}' (use https://angular-ui.github.io/bootstrap/#/modal) ok
+       *  Delete - removes a user from the table ok
+       *  Edit - Opens user detail page ok
+   *  The table should display 10 items per page and needs to have previous-current-next buttons on the bottom. ok
    *  On the top of the table, place 2 buttons. The buttons are disabled while nothing is selected.
         * Delete - removes selected item(s)
         * Download - downloads marked item as a csv file (use ; as separator)
