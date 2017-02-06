@@ -2,11 +2,12 @@ import { UserService } from './../user.service';
 
 export class UserTableController {
 
-  static $inject: string[] = ['UserService'];
+  static $inject: string[] = ['UserService', '$state'];
   users: any[];
   page: number;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private $state: angular.ui.IStateService) {}
 
   $onInit() {
     this.userService.page().then((users: any[]) => this.users = users);
@@ -17,10 +18,10 @@ export class UserTableController {
   }
 
   deleteRow($event) {
-    console.log($event);
+    this.userService.deleteUser($event.user);
   }
 
   navigateToEdit($event) {
-    console.log($event);
+    this.$state.transitionTo('userDetails', { id : $event.user.id });
   }
 }

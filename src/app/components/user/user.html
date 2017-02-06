@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h6 class="modal-title" id="modal-title">Show User</h6>
+</div>
+<div class="modal-body" id="modal-body">
+  <p>
+    <span>Name: {{$ctrl.user.firstName}} {{$ctrl.user.lastName}} </span>
+  </p>
+  <p>
+    <span>Day of Birth: {{$ctrl.user.dateOfBirth}}</span>
+  </p>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</div>

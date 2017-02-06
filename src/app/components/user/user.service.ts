@@ -1,3 +1,5 @@
+import { UserModalController } from './user-modal.controller';
+
 export class UserService {
 
   static $inject: string[] = ['$http', '$q', '$uibModal'];
@@ -13,23 +15,24 @@ export class UserService {
   }
 
   showUser(user) {
-    let modalInstance = this.$modal.open({
-      template: 'name: {{$ctrl.user.id}}{{user.id}}',
+    this.$modal.open({
+      template: require('./user.html'),
       bindToController: true,
       controllerAs: '$ctrl',
+      controller: UserModalController,
       resolve: {
-        user: () => user
-      }
-    });
-
-    modalInstance.result.then((selectedItem) => {
-      console.log(selectedItem);
-    }, () => {
-      console.log('Modal dismissed at: ' + new Date());
+        user: () => {
+          return user;
+        }
+      },
     });
   }
 
-page() {
+  deleteUser(user) {
+    console.log(user);
+  }
+
+  page() {
     this.deferred = this.$q.defer();
 
     if (this.users) {
