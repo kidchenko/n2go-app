@@ -29,14 +29,15 @@ export class UserService {
   }
 
   deleteUser(user) {
-    console.log(user);
+    this.users = this.users.filter(e => e.id != user.id);
+    return this.users;
   }
 
   page() {
     this.deferred = this.$q.defer();
 
     if (this.users) {
-      this.resolve();
+      return this.resolve();
     }
     return this.sendRequest();
   }
@@ -62,6 +63,16 @@ export class UserService {
   private cacheAndResolve(response: angular.IHttpPromiseCallbackArg<any>) {
     this.users = response.data;
     return this.resolve();
+  }
+
+  public static instance() {
+
+    var factory = ($http, $q, $uibModal) => {
+      return new UserService($http, $q, $uibModal);
+    };
+
+    factory.$inject = ['$http', '$q', '$uibModal'];
+    return factory;
   }
 
 }

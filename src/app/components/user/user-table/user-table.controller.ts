@@ -18,7 +18,7 @@ export class UserTableController {
   }
 
   deleteRow($event) {
-    this.userService.deleteUser($event.user);
+    this.users = this.userService.deleteUser($event.user);
   }
 
   navigateToEdit($event) {

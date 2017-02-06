@@ -13,7 +13,7 @@ export const UserModule = angular
     UserDetailsModule,
     UserTableModule
   ])
-  .service('UserService', UserService)
+  .factory('UserService', UserService.instance())
   .config(($stateProvider: angular.ui.IStateProvider) => {
     $stateProvider
     .state('allUsers', {
