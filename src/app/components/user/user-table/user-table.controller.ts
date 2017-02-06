@@ -52,11 +52,11 @@ export class UserTableController {
   }
 
   deleteSelecteds() {
-    console.log(this.selecteds);
-  }
-
-  downloadSelecteds() {
-    console.log(this.selecteds);
+    this.selecteds.forEach((e) => {
+      this.userService.delete(e);
+      this.refresh();
+    });
+    this.selecteds = [];
   }
 
   private incrementPage() {

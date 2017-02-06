@@ -20,7 +20,6 @@ angular
     'ui.bootstrap',
     'ngSanitize',
 
-
     ComponentsModule
   ])
   .config(routesConfig)
