@@ -21,8 +21,11 @@ export class UserTableController {
   }
 
   deleteRow($event) {
-    this.userService.delete($event.user);
-    this.refresh();
+    this.userService.delete($event.user)
+      .then((user) => {
+        this.deleteFromSelecteds(user);
+        this.refresh();
+      });
   }
 
   navigateToEdit($event) {
@@ -30,12 +33,12 @@ export class UserTableController {
   }
 
   selectUser($event) {
-    var index = this.selecteds.indexOf($event.user);
+    let index = this.selecteds.indexOf($event.user);
 
     if (index === -1) {
-      this.selecteds.push($event.user);
+      this.selecteds = this.selecteds.concat($event.user);
     } else {
-      this.selecteds.splice(index, 1);
+      this.selecteds = this.selecteds.filter((e) => e.id !== $event.user.id);
     }
   }
 
@@ -57,6 +60,10 @@ export class UserTableController {
       this.refresh();
     });
     this.selecteds = [];
+  }
+
+  private deleteFromSelecteds(user) {
+    this.selecteds = this.selecteds.filter((u) => u.id !== user.id);
   }
 
   private incrementPage() {

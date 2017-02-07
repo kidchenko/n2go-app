@@ -1,3 +1,4 @@
+import { User } from './user.model';
 import { UserModalController } from './user-modal.controller';
 
 export class UserService {
@@ -5,15 +6,11 @@ export class UserService {
   static $inject: string[] = ['json', '$q', '$uibModal'];
   private deferred: angular.IDeferred<any>;
 
-  constructor(private json,
+  constructor(private json: User[],
               private $q: angular.IQService,
               private $modal: angular.ui.bootstrap.IModalService) { }
 
-  get(id: number) {
-    return this.resolveUser(id);
-  }
-
-  show(user) {
+  show(user: User) {
     this.$modal.open({
       template: require('./user.html'),
       bindToController: true,
@@ -23,38 +20,49 @@ export class UserService {
         user: () => {
           return user;
         }
-      },
+      }
     });
   }
 
-  delete(user) {
-    this.deferred = this.$q.defer();
+  save(user: User) {
+    let index = this.json.findIndex((u: User) => {
+      return u.id === user.id;
+    });
+    console.log(index);
+    this.json[index] = user;
+}
+
+
+  get(id: number) : angular.IPromise<User> {
+
+    let user = this.findOne(id);
+    return this.promise(user);
+  }
+
+  delete(user: User) {
 
     this.json = this.json.filter(e => e.id !== user.id);
-    return this.returnPromise(this.json);
+    return this.promise(user);
   }
 
   page(page: number, rowsPerPage: number) {
-    this.deferred = this.$q.defer();
 
     let start = (page - 1) * rowsPerPage + 1;
-    this.deferred.resolve(this.json.slice(start - 1, (start + rowsPerPage) -1));
+    let teenRows = this.json.slice(start - 1, (start + rowsPerPage) -1);
 
-    return this.deferred.promise;
+    return this.promise(teenRows);
   }
 
-  private resolveUser(id: number) {
+  private findOne(id: number) {
 
-    this.deferred = this.$q.defer();
-    let findOne = this.json.filter(e => e.id === id)[0];
-
-    return this.returnPromise(findOne);
+    let user = this.json.filter((u: User) => u.id === Number(id))[0];
+    return user;
   }
 
-  private returnPromise(data) {
-
-    this.deferred.resolve(data);
-    return this.deferred.promise;
+  private promise(data) {
+    let deferred = this.$q.defer();
+    deferred.resolve(data);
+    return deferred.promise;
   }
 
   public static instance() {
