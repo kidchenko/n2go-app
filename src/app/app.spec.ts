@@ -10,10 +10,12 @@ describe('hello component', () => {
       .component('fountainHello', AppComponent);
     angular.mock.module('fountainHello');
   });
+
   it('should render hello world', angular.mock.inject(($rootScope: ng.IRootScopeService, $compile: ng.ICompileService) => {
     const element = $compile('<app></app')($rootScope);
     $rootScope.$digest();
     const h1 = element.find('h1');
     expect(h1.html()).toEqual('Hello World!');
   }));
+
 });
