@@ -1,6 +1,7 @@
 import * as angular from 'angular';
 
 import uiRouter from 'angular-ui-router';
+import axios from 'axios';
 
 import 'angular-sanitize';
 import 'angular-ui-bootstrap';
@@ -14,17 +15,22 @@ import routesConfig from './routes';
 
 export const app: string = 'app';
 
-angular
-  .module(app, [
-    uiRouter,
-    'ui.bootstrap',
-    'ngSanitize',
+axios.get('/data/users.json')
+  .then(payload => payload.data)
+  .then(users => {
 
-    ComponentsModule
-  ])
-  .config(routesConfig)
-  .component('app', AppComponent)
-  .value('EventEmitter', payload => ({ $event: payload }))
-  .run((UserService) => {
-    UserService.cache();
-  });
+    angular
+      .module(app, [
+        uiRouter,
+        'ui.bootstrap',
+        'ngSanitize',
+
+        ComponentsModule
+      ])
+      .config(routesConfig)
+      .component('app', AppComponent)
+      .value('EventEmitter', payload => ({ $event: payload }))
+      .value('json', users);
+
+      angular.bootstrap(document, [app]);
+});

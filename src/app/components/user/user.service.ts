@@ -2,11 +2,10 @@ import { UserModalController } from './user-modal.controller';
 
 export class UserService {
 
-  static $inject: string[] = ['$http', '$q', '$uibModal'];
-  private json: any[] = [];
+  static $inject: string[] = ['json', '$q', '$uibModal'];
   private deferred: angular.IDeferred<any>;
 
-  constructor(private $http: angular.IHttpService,
+  constructor(private json,
               private $q: angular.IQService,
               private $modal: angular.ui.bootstrap.IModalService) { }
 
@@ -32,7 +31,7 @@ export class UserService {
     this.deferred = this.$q.defer();
 
     this.json = this.json.filter(e => e.id !== user.id);
-    return this.resolve(this.json);
+    return this.returnPromise(this.json);
   }
 
   page(page: number, rowsPerPage: number) {
@@ -44,38 +43,15 @@ export class UserService {
     return this.deferred.promise;
   }
 
-  cache() {
-
-    this.deferred = this.$q.defer();
-
-    if (this.json.length) {
-      return this.resolve(this.json);
-    }
-
-    return this.sendRequest()
-      .then((users: any[]) => {
-        this.json = users;
-        return this.resolve(this.json);
-      })
-      .catch(reson => this.deferred.reject(reson));;
-  }
-
-  private sendRequest() {
-
-    let promise = this.$http.get('/data/users.json');
-
-    return promise.then(response => response.data);
-  }
-
   private resolveUser(id: number) {
 
     this.deferred = this.$q.defer();
     let findOne = this.json.filter(e => e.id === id)[0];
 
-    return this.resolve(findOne);
+    return this.returnPromise(findOne);
   }
 
-  private resolve(data) {
+  private returnPromise(data) {
 
     this.deferred.resolve(data);
     return this.deferred.promise;
@@ -83,11 +59,11 @@ export class UserService {
 
   public static instance() {
 
-    let factory = ($http, $q, $uibModal) => {
-      return new UserService($http, $q, $uibModal);
+    let factory = (json, $q, $uibModal) => {
+      return new UserService(json, $q, $uibModal);
     };
 
-    factory.$inject = ['$http', '$q', '$uibModal'];
+    factory.$inject = ['json', '$q', '$uibModal'];
     return factory;
   }
 

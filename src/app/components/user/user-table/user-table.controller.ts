@@ -68,7 +68,10 @@ export class UserTableController {
   }
 
   private refresh() {
-    this.userService.page(this.page, this.rowsPerPage).then((users: any[]) => this.users = users);
+    this.userService.page(this.page, this.rowsPerPage)
+      .then((users: any[]) => {
+        this.users = users
+      });
   }
 
 }
