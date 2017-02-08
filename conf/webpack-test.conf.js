@@ -1,3 +1,4 @@
+const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 module.exports = {
   module: {
@@ -23,6 +24,15 @@ module.exports = {
         ]
       },
       {
+        test: /\.(css|scss)$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+          'postcss-loader'
+        ]
+      },
+      {
         test: /.html$/,
         loaders: [
           'html-loader'
@@ -33,6 +43,7 @@ module.exports = {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
+        postcss: () => [autoprefixer],
         resolve: {},
         ts: {
           configFileName: 'tsconfig.json'

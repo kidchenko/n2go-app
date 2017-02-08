@@ -3,19 +3,19 @@ import 'angular-mocks';
 
 import { AppComponent } from './app.component';
 
-describe('hello component', () => {
+describe('component: app', () => {
   beforeEach(() => {
     angular
-      .module('fountainHello', ['app/hello.html'])
-      .component('fountainHello', AppComponent);
-    angular.mock.module('fountainHello');
+      .module('app', [])
+      .component('app', AppComponent);
+    angular.mock.module('app');
   });
 
   it('should render hello world', angular.mock.inject(($rootScope: ng.IRootScopeService, $compile: ng.ICompileService) => {
     const element = $compile('<app></app')($rootScope);
     $rootScope.$digest();
-    const h1 = element.find('h1');
-    expect(h1.html()).toEqual('Hello World!');
+    const main = element.find('main');
+    expect(main.hasClass('container')).toBeTruthy();
   }));
 
 });

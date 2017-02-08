@@ -1,0 +1,23 @@
+.n2-header {
+
+  .navbar-brand {
+    padding: 10px;
+    padding-left: 15px;
+  }
+
+  .navbar-nav {
+
+    li>a:focus,
+    li>a:hover,
+    .active > a,
+    .active > a:hover,
+    .active > a:focus {
+      color: #00a7e6
+    }
+  }
+
+  .n2-logo {
+    height: 100%;
+    vertical-align: top;
+  }
+}

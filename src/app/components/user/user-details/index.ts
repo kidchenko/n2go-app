@@ -12,7 +12,7 @@ export const UserDetailsModule = angular
   .config(($stateProvider: angular.ui.IStateProvider) => {
     $stateProvider
     .state('userDetails', {
-      url: '/users/:id',
+      url: '/users/{id}',
       component: 'userDetails',
       resolve: {
         user: ($stateParams, UserService: UserService) : angular.IPromise<User> => {
