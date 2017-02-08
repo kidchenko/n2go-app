@@ -1,16 +1,16 @@
 import { UserService } from './../user.service';
+import { UserModalService } from './../user-modal/user-modal.service';
 
 export class UserTableController {
 
-  static $inject: string[] = ['UserService', '$state'];
+  static $inject: string[] = ['UserService'];
 
   selecteds: any[] = [];
   users: any[] = [];
   page: number = 1;
   rowsPerPage: number = 10;
 
-  constructor(private userService: UserService,
-              private $state: angular.ui.IStateService) {}
+  constructor(private userService: UserService) {}
 
   $onInit() {
     this.refresh();
@@ -29,7 +29,7 @@ export class UserTableController {
   }
 
   navigateToEdit($event) {
-    this.$state.transitionTo('userDetails', { id : $event.user.id });
+
   }
 
   selectUser($event) {

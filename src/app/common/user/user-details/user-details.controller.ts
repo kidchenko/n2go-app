@@ -1,22 +1,20 @@
 import * as angular from 'angular';
 
-import { UserService } from './../user.service';
-import { UserConfirmController } from './user-confirm.controller';
 import { User } from '../user.model';
+import { UserService } from './../user.service';
+import { UserConfirmService } from './../user-confirm/user-confirm.service';
+
 
 export class UserDetailsController {
 
-  static $inject: string[] = ['UserService', '$uibModal'];
+  static $inject: string[] = ['UserService', 'userConfirmService'];
 
   private cache: User;
   private user: User;
+  public editMode: boolean = false;
 
   constructor(private userService: UserService,
-              private $modal: angular.ui.bootstrap.IModalService) {
-
-               }
-
-  editMode = false;
+              private userConfirmService: UserConfirmService) { }
 
   edit() {
     this.cache = angular.copy(this.user);
@@ -30,12 +28,7 @@ export class UserDetailsController {
 
   cancel(form) {
     if (form.$dirty) {
-      let instance = this.$modal.open({
-        template: require('./user-confirm.html'),
-        bindToController: true,
-        controllerAs: '$ctrl',
-        controller: UserConfirmController,
-      });
+      let instance = this.userConfirmService.confirm();
 
       instance.result
         .then(() => {
@@ -48,4 +41,5 @@ export class UserDetailsController {
         this.editMode = false;
       }
   }
+
  }
