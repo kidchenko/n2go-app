@@ -1,11 +1,15 @@
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-md-10 col-lg-8">
       <div class="media">
           <a class="pull-left" href="#">
               <img class="media-object img-circle" src="http://lorempixel.com/100/100/people/">
           </a>
           <div class="media-body">
-              <h4 class="media-heading" ng-if="!$ctrl.editMode">{{$ctrl.user.id}} - {{$ctrl.user.fullName()}} </h4>
+              <h4 class="media-heading" ng-if="!$ctrl.editMode">{{$ctrl.user.id}} - {{$ctrl.user.fullName()}}
+                <button class="btn btn-sm btn-warning"
+                        ng-click="$ctrl.edit()"><span class="glyphicon glyphicon-pencil"></span>
+                </button>
+              </h4>
               <form class="form-inline" name="form" ng-if="$ctrl.editMode" novalidate ng-submit="form.$valid && $ctrl.save($ctrl.user)">
                 <div class="form-group">
                   <label for="firstName" class="h4">{{$ctrl.user.id}}</label>
@@ -20,14 +24,13 @@
                          ng-model="$ctrl.user.lastName"
                          required />
                 </div>
-                <button type="submit" class="btn">Save</button>
-                <button type="button" class="btn" ng-click="$ctrl.cancel(form)">Cancel</button>
+                <button type="submit" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                <button type="button" class="btn btn-sm btn-warning" ng-click="$ctrl.cancel(form)"> Cancel</button>
               </form>
               <h5>Email: <strong> {{$ctrl.user.email}}</strong></h5>
               <h5>Country: <strong> {{$ctrl.user.country}}</strong></h5>
               <h5>Age: <strong> {{$ctrl.user.age()}}</strong></h5>
               <hr>
-              <button class="btn" ng-click="$ctrl.edit()">Edit</button>
           </div>
       </div>
   </div>

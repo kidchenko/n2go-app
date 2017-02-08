@@ -8,7 +8,7 @@
 <td>{{$ctrl.user.lastName}}</td>
 <td>{{$ctrl.user.email}}</td>
 <td>
-  <a href="#" ng-click="$ctrl.show($ctrl.user)">Show</a> |
-  <a href="#" ng-click="$ctrl.edit($ctrl.user)">Edit</a> |
-  <a href="#" ng-click="$ctrl.delete($ctrl.user)">Delete</a>
+  <button class="btn btn-xs btn-default" ng-click="$ctrl.show($ctrl.user)"><span class="glyphicon glyphicon-user"></span> Show</button> |
+  <button class="btn btn-xs btn-warning" ng-click="$ctrl.edit($ctrl.user)"><span class="glyphicon glyphicon-pencil"></span> Edit</button> |
+  <button class="btn btn-xs btn-danger" ng-click="$ctrl.delete($ctrl.user)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
 </td>
