@@ -1,7 +1,11 @@
-### Run
+# Newsletter2go fe-test
+Estimated time: ~4h
+As a follow-up to your talk, here the test that we've prepared. There's no rush (from our side), so take your time finishing it and try to stay as close as possible to the specification below.
 
-`npm install` to install dependencies
-`npm run serve` to serve development environment
+## Run
+
+- `npm install` to install dependencies
+- `npm run serve` to serve
 
 #### Use NPM scripts
 
@@ -18,10 +22,6 @@ If you have [`gulp-cli`](https://www.npmjs.com/package/gulp-cli) installed in gl
 - `gulp test`
 - `gulp test:auto`
 
-
-# Newsletter2go fe-test
-Estimated time: ~4h
-As a follow-up to your talk, here the test that we've prepared. There's no rush (from our side), so take your time finishing it and try to stay as close as possible to the specification below.
 
 ## Specification
 
