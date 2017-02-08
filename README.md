@@ -1,3 +1,24 @@
+### Run
+
+`npm install` to install dependencies
+`npm run serve` to serve development environment
+
+#### Use NPM scripts
+
+- `npm run serve` to launch a browser sync server on your source files
+- `npm run test` to launch your unit tests with Karma
+- `npm run test:auto` to launch your unit tests with Karma in watch mode
+
+
+#### Or Gulp tasks
+
+If you have [`gulp-cli`](https://www.npmjs.com/package/gulp-cli) installed in global packages you can use equivalent:
+
+- `gulp serve`
+- `gulp test`
+- `gulp test:auto`
+
+
 # Newsletter2go fe-test
 Estimated time: ~4h
 As a follow-up to your talk, here the test that we've prepared. There's no rush (from our side), so take your time finishing it and try to stay as close as possible to the specification below.
