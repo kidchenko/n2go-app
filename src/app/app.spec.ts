@@ -11,7 +11,7 @@ describe('component: app', () => {
     angular.mock.module('app');
   });
 
-  it('should render hello world', angular.mock.inject(($rootScope: ng.IRootScopeService, $compile: ng.ICompileService) => {
+  it('should', angular.mock.inject(($rootScope: ng.IRootScopeService, $compile: ng.ICompileService) => {
     const element = $compile('<app></app')($rootScope);
     $rootScope.$digest();
     const main = element.find('main');

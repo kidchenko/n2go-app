@@ -17,7 +17,7 @@ export const UserDetailsModule = angular
       resolve: {
         user: ($stateParams, UserService: UserService) : angular.IPromise<User> => {
           return UserService.get($stateParams.id)
-            .then((u: User) => new User(u));
+            .then((u: User) => u);
         }
       }
     });

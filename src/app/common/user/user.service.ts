@@ -4,6 +4,8 @@ import { ConfirmModalService } from '../../components/confirm-modal/confirm-moda
 
 export class UserService {
 
+  public static $inject: string[] = ['json', 'UserModalService', 'ConfirmModalService', '$q', '$state'];
+
   public static instance() {
 
     let factory = (json, UserModalService, ConfirmModalService, $q, $state) => {
@@ -13,9 +15,6 @@ export class UserService {
     factory.$inject = ['json', 'UserModalService', 'ConfirmModalService', '$q', '$state'];
     return factory;
   }
-
-
-  public static $inject: string[] = ['json', 'UserModalService', 'ConfirmModalService', '$q', '$state'];
 
   constructor(private json: User[],
               private UserModalService: UserModalService,
@@ -47,7 +46,7 @@ export class UserService {
 
   get(id: number) : angular.IPromise<User> {
     let user = this.findOne(id);
-    return this.promise(user);
+    return this.promise(new User(user));
   }
 
   delete(user: User) {
