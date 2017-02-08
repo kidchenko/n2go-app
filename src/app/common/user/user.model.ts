@@ -5,7 +5,7 @@ export interface IUser {
   lastName: string;
   email: string;
   country: string;
-  dateOfBirth: Date;
+  dateOfBirth: Date|string;
 
 }
 
@@ -17,7 +17,7 @@ export class User implements IUser {
   public lastName: string;
   public email: string;
   public country: string;
-  public dateOfBirth: Date;
+  public dateOfBirth: Date|string;
 
   constructor(user: IUser) {
     this.id = user.id;
@@ -39,7 +39,7 @@ export class User implements IUser {
 
   private ageDifFromBirth() {
     let now = Date.now();
-    let myBirthday = this.dateOfBirth.getTime();
+    let myBirthday = (<Date> this.dateOfBirth).getTime();
     return now - myBirthday;
   }
 
