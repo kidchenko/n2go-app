@@ -1,15 +1,28 @@
 import { User } from './user.model';
 import { UserModalService } from './user-modal/user-modal.service';
+import { ConfirmModalService } from '../../components/confirm-modal/confirm-modal.service';
 
 export class UserService {
 
-  static $inject: string[] = ['json', 'UserModalService', '$q', '$state'];
-  private deferred: angular.IDeferred<any>;
+  public static instance() {
+
+    let factory = (json, UserModalService, ConfirmModalService, $q, $state) => {
+      return new UserService(json, UserModalService, ConfirmModalService, $q, $state);
+    };
+
+    factory.$inject = ['json', 'UserModalService', 'ConfirmModalService', '$q', '$state'];
+    return factory;
+  }
+
+
+  public static $inject: string[] = ['json', 'UserModalService', 'ConfirmModalService', '$q', '$state'];
 
   constructor(private json: User[],
               private UserModalService: UserModalService,
+              private ConfirmModalService: ConfirmModalService,
               private $q: angular.IQService,
               private $state: angular.ui.IStateService) { }
+
 
   save(user: User) {
     let index = this.json.findIndex((u: User) => {
@@ -19,6 +32,7 @@ export class UserService {
     this.json[index] = user;
   }
 
+
   show(user: User) {
     this.UserModalService.show(user);
   }
@@ -27,6 +41,9 @@ export class UserService {
     this.$state.transitionTo('userDetails', { id : user.id });
   }
 
+  confirm() {
+    return this.ConfirmModalService.confirm();
+  }
 
   get(id: number) : angular.IPromise<User> {
     let user = this.findOne(id);
@@ -39,34 +56,27 @@ export class UserService {
   }
 
   page(page: number, rowsPerPage: number) {
-
     let start = (page - 1) * rowsPerPage + 1;
-    console.log(start);
-    console.log((start + rowsPerPage) -1);
-    let tenRows = this.json.slice(start - 1, (start + rowsPerPage) -1);
+    let tenRows = this.json.slice(start - 1, (start + rowsPerPage) - 1).map(x => new User(x));
 
     return this.promise(tenRows);
   }
+
+  total() {
+    return this.json.length;
+  }
+
+
 
   private findOne(id: number) {
     let user = this.json.filter((u: User) => u.id === Number(id))[0];
     return user;
   }
 
-  private promise(data) {
+  private promise(data: any) {
     let deferred = this.$q.defer();
     deferred.resolve(data);
     return deferred.promise;
-  }
-
-  public static instance() {
-
-    let factory = (json, UserModalService, $q, $state) => {
-      return new UserService(json, UserModalService, $q, $state);
-    };
-
-    factory.$inject = ['json', 'UserModalService', '$q', '$uibModal', '$state'];
-    return factory;
   }
 
 }

@@ -5,7 +5,7 @@ export interface IUser {
   lastName: string;
   email: string;
   country: string;
-  dateOfBirth: Date
+  dateOfBirth: Date;
 
 }
 
@@ -17,7 +17,7 @@ export class User implements IUser {
   public lastName: string;
   public email: string;
   public country: string;
-  public dateOfBirth: Date
+  public dateOfBirth: Date;
 
   constructor(user: IUser) {
     this.id = user.id;
@@ -25,7 +25,7 @@ export class User implements IUser {
     this.lastName = user.lastName;
     this.email = user.email;
     this.country = user.country;
-    this.dateOfBirth = user.dateOfBirth;
+    this.dateOfBirth = new Date(user.dateOfBirth);
   }
 
   getAge(): number {

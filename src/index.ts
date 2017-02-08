@@ -1,10 +1,9 @@
-import * as angular from 'angular';
-import axios from 'axios';
-import { app } from './app/app';
-
 import './index.scss';
 
-import { AppComponent } from './app/app.component';
+import * as angular from 'angular';
+import axios from 'axios';
+
+import { app } from './app/app';
 
 axios.get('/data/users.json')
   .then(payload => payload.data)

@@ -7,7 +7,11 @@ describe("service: user.service", () => {
 
   let UserService : UserService
 
-  beforeEach(angular.mock.module('app'));
+  beforeEach(() => {
+    angular
+      .module('app', [])
+    angular.mock.module('app');
+  });
 
   beforeEach(() => {
     inject((_UserService_: UserService) => {
@@ -16,6 +20,7 @@ describe("service: user.service", () => {
   });
 
   it("should initialize correctly", () => {
+    console.log(UserService);
     expect(UserService).toBeDefined();
   });
 

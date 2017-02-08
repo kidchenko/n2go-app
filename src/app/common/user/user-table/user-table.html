@@ -8,12 +8,8 @@
                   ng-click="$ctrl.deleteSelecteds()"
                   ng-disabled="!$ctrl.selecteds.length"><span class="glyphicon glyphicon-remove"></span> Delete
           </button> |
-          <button class="btn btn-sm btn-info"
-                  ng-csv="$ctrl.selecteds"
-                  filename="users.csv"
-                  field-separator=";"
-                  ng-disabled="!$ctrl.selecteds.length"><span class="glyphicon glyphicon-cloud-download"></span> Download
-          </button>
+          <download-csv collection="$ctrl.selecteds"
+                        disabled="!$ctrl.selecteds.length"></download-csv>
           </th>
       </tr>
       <tr>

@@ -2,19 +2,16 @@ import * as angular from 'angular';
 
 import { User } from '../user.model';
 import { UserService } from './../user.service';
-import { UserConfirmService } from './../user-confirm/user-confirm.service';
-
 
 export class UserDetailsController {
 
-  static $inject: string[] = ['UserService', 'userConfirmService'];
+  static $inject: string[] = ['UserService'];
 
+  public editMode: boolean = false;
   private cache: User;
   private user: User;
-  public editMode: boolean = false;
 
-  constructor(private userService: UserService,
-              private userConfirmService: UserConfirmService) { }
+  constructor(private userService: UserService) { }
 
   edit() {
     this.cache = angular.copy(this.user);
@@ -26,20 +23,21 @@ export class UserDetailsController {
     this.editMode = false;
   }
 
-  cancel(form) {
-    if (form.$dirty) {
-      let instance = this.userConfirmService.confirm();
+  cancel(form: angular.IFormController) {
+    if (!form.$dirty) {
+      this.editMode = false;
+      return;
+    }
 
-      instance.result
-        .then(() => {
-          this.user = this.cache;
-          this.editMode = false
-        })
-        .catch(() => this.editMode = true);
+    let instance = this.userService.confirm();
 
-      } else {
+    return instance.result
+      .then(() => {
+        this.user = this.cache;
         this.editMode = false;
-      }
+      })
+      .catch(() => this.editMode = true);
+
   }
 
  }

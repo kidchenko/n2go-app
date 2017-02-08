@@ -1,33 +1,30 @@
-interface IUserRowScope extends ng.IScope {
-  user : any;
-  $ctrl: any;
-}
+import { User } from './../../user.model';
 
 export class UserRowController {
 
   static $inject: string[] = ['EventEmitter'];
 
-  constructor(private eventEmitter) { }
+  constructor(private eventEmitter: any) { }
 
-  show(user) {
+  show(user: User) {
     (<any>this).onShow(this.eventEmitter({
       user
     }));
   }
 
-  edit(user) {
+  edit(user: User) {
     (<any>this).onEdit(this.eventEmitter({
       user
     }));
   }
 
-  delete(user) {
+  delete(user: User) {
     (<any>this).onDelete(this.eventEmitter({
       user
     }));
   }
 
-  toggle(user) {
+  toggle(user: User) {
     (<any>this).onSelect(this.eventEmitter({
       user
     }));

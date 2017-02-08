@@ -1,9 +1,13 @@
 import { User } from './user.model';
 
 describe('model: user', () => {
-  it('should create user with values', () => {
-    let now = new Date();
-    let user = new User({
+
+  let user: User;
+  let now: Date;
+
+  beforeEach(() => {
+    now = new Date();
+    user = new User({
       country: 'Brazil',
       dateOfBirth: now,
       email: 'kidchenko@gmail.com',
@@ -11,8 +15,15 @@ describe('model: user', () => {
       id: 1,
       lastName: 'Barbosa',
     });
-    expect(user.dateOfBirth).toBe(now);
+  })
 
+  it('should create user with values', () => {
+    expect(user.dateOfBirth).toBe(now);
   });
+
+  it('should calculate the age', () => {
+    user.dateOfBirth = new Date(1991, 5, 20);
+    expect(user.getAge()).toBe(25);
+  })
 
 });

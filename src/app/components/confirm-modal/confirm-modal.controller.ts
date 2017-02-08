@@ -1,4 +1,4 @@
-export class UserConfirmController {
+export class ConfirmModalController {
 
   static $inject = ['$uibModalInstance'];
 

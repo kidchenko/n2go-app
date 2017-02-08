@@ -6,7 +6,7 @@
     <span>Name: {{$ctrl.user.firstName}} {{$ctrl.user.lastName}} </span>
   </p>
   <p>
-    <span>Day of Birth: {{$ctrl.user.dateOfBirth}}</span>
+    <span>Day of Birth: {{$ctrl.user.getAge()}}</span>
   </p>
   <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>

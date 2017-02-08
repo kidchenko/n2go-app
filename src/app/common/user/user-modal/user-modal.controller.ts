@@ -1,17 +1,18 @@
+import { User } from './../user.model';
 
 export class UserModalController {
 
   static $inject = ['$uibModalInstance', 'user'];
 
   constructor(private $modalInstance : angular.ui.bootstrap.IModalServiceInstance,
-              public user) { }
+              public user: User) { }
 
   ok() {
-    this.$modalInstance.close();
+    return this.$modalInstance.close();
   }
 
   cancel() {
-    this.$modalInstance.dismiss();
+    return this.$modalInstance.dismiss();
   }
 
 }

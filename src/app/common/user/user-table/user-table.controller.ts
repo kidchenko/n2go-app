@@ -1,38 +1,44 @@
+import { User } from './../user.model';
 import { UserService } from './../user.service';
-import { UserModalService } from './../user-modal/user-modal.service';
+
+interface IUserTableEvent {
+  user: User;
+}
+
 
 export class UserTableController {
 
   static $inject: string[] = ['UserService'];
 
-  selecteds: any[] = [];
-  users: any[] = [];
+  selecteds: User[] = [];
+  users: User[] = [];
   page: number = 1;
   rowsPerPage: number = 10;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private $state: angular.ui.IStateService) {}
 
   $onInit() {
     this.refresh();
   }
 
-  openShowModal($event) {
+  openShowModal($event: IUserTableEvent) {
     this.userService.show($event.user);
   }
 
-  deleteRow($event) {
+  navigateToEdit($event: IUserTableEvent) {
+    this.userService.goToEditPage($event.user);
+  }
+
+  deleteRow($event: IUserTableEvent) {
     this.userService.delete($event.user)
-      .then((user) => {
+      .then((user: User) => {
         this.deleteFromSelecteds(user);
         this.refresh();
       });
   }
 
-  navigateToEdit($event) {
-
-  }
-
-  selectUser($event) {
+  selectUser($event: IUserTableEvent) {
     let index = this.selecteds.indexOf($event.user);
 
     if (index === -1) {
@@ -43,8 +49,11 @@ export class UserTableController {
   }
 
   next() {
-    this.incrementPage();
-    this.refresh();
+    let total = this.userService.total();
+    if (this.page * this.rowsPerPage <  total) {
+      this.incrementPage();
+      this.refresh();
+    }
   }
 
   previous() {
@@ -62,7 +71,7 @@ export class UserTableController {
     this.selecteds = [];
   }
 
-  private deleteFromSelecteds(user) {
+  private deleteFromSelecteds(user: User) {
     this.selecteds = this.selecteds.filter((u) => u.id !== user.id);
   }
 
@@ -76,8 +85,8 @@ export class UserTableController {
 
   private refresh() {
     this.userService.page(this.page, this.rowsPerPage)
-      .then((users: any[]) => {
-        this.users = users
+      .then((users: User[]) => {
+        this.users = users;
       });
   }
 

@@ -1,20 +1,19 @@
 import * as angular from 'angular';
 
-import ngSanitize from 'angular-sanitize';
 import uiRouter from 'angular-ui-router';
-import 'ng-csv';
 
 import { UserTableComponent } from './user-table.component';
 import { UserRowModule } from './user-row';
-import { UserModalModule } from './../user-modal'
+import { UserModalModule } from './../user-modal';
+import { ConfirmModalModule } from '../../../components/confirm-modal';
 
 export const UserTableModule = angular
   .module('userTable', [
     'ngSanitize',
-    'ngCsv',
     uiRouter,
     UserRowModule,
-    UserModalModule
+    UserModalModule,
+    ConfirmModalModule
   ])
   .component('userTable', UserTableComponent)
   .name;
