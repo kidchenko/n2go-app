@@ -44,3 +44,13 @@ To solve the task you can use npm, gulp, bower, angular, ui-router, bootstrap. G
         * Display the number of selected items. ok.
         * On the detail page, enable edit of firstname and lastname, add validation and put save (save changes) and cancel (return to /user without saving) buttons.
         * If data was changed in the form and the user clicks "cancel", display a confirm modal with yes/no (https://angular-ui.github.io/bootstrap/#/modal)
+
+## Images
+
+<img  src="./print1.png">
+
+<img  src="./print2.png">
+
+<img  src="./print3.png">
+
+<img  src="./print4.png">
