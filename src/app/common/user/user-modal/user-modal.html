@@ -3,10 +3,10 @@
 </div>
 <div class="modal-body" id="modal-body">
   <p>
-    <span>Name: {{$ctrl.user.firstName}} {{$ctrl.user.lastName}} </span>
+    <span>Name: {{$ctrl.fullName}} </span>
   </p>
   <p>
-    <span>Age: {{$ctrl.user.getAge()}}</span>
+    <span>Age: {{$ctrl.age}}</span>
   </p>
   <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>

@@ -1,8 +1,8 @@
-import { User } from './../user.model';
+import { IUser } from './../user.model';
 import { UserService } from './../user.service';
 
 interface IUserTableEvent {
-  user: User;
+  user: IUser;
 }
 
 
@@ -10,8 +10,8 @@ export class UserTableController {
 
   static $inject: string[] = ['UserService'];
 
-  selecteds: User[] = [];
-  users: User[] = [];
+  selecteds: IUser[] = [];
+  users: IUser[] = [];
   page: number = 1;
   rowsPerPage: number = 10;
 
@@ -32,7 +32,7 @@ export class UserTableController {
 
   deleteRow($event: IUserTableEvent) {
     this.userService.delete($event.user)
-      .then((user: User) => {
+      .then((user: IUser) => {
         this.deleteFromSelecteds(user);
         this.refresh();
       });
@@ -71,7 +71,7 @@ export class UserTableController {
     this.selecteds = [];
   }
 
-  private deleteFromSelecteds(user: User) {
+  private deleteFromSelecteds(user: IUser) {
     this.selecteds = this.selecteds.filter((u) => u.id !== user.id);
   }
 
@@ -85,7 +85,7 @@ export class UserTableController {
 
   private refresh() {
     this.userService.page(this.page, this.rowsPerPage)
-      .then((users: User[]) => {
+      .then((users: IUser[]) => {
         this.users = users;
       });
   }

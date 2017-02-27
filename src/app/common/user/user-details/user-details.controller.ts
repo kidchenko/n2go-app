@@ -1,6 +1,6 @@
 import * as angular from 'angular';
 
-import { User } from '../user.model';
+import { IUser } from '../user.model';
 import { UserService } from './../user.service';
 
 export class UserDetailsController {
@@ -8,18 +8,26 @@ export class UserDetailsController {
   static $inject: string[] = ['UserService'];
 
   public editMode: boolean = false;
-  private cache: User;
-  private user: User;
+  public age: number;
+  public fullName: string;
+  private cache: IUser;
+  private user: IUser;
 
   constructor(private userService: UserService) { }
+
+   $onInit() {
+     this.age = this.userService.getAge(this.user);
+     this.fullName = this.userService.getFullName(this.user);
+   }
 
   edit() {
     this.cache = angular.copy(this.user);
     this.editMode = true;
   }
 
-  save(user: User) {
+  save(user: IUser) {
     this.userService.save(user);
+    this.fullName = this.userService.getFullName(user);
     this.editMode = false;
   }
 
@@ -37,7 +45,6 @@ export class UserDetailsController {
         this.editMode = false;
       })
       .catch(() => this.editMode = true);
-
   }
 
  }

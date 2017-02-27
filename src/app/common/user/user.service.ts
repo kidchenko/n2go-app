@@ -1,4 +1,4 @@
-import { User } from './user.model';
+import { IUser } from './user.model';
 import { UserModalService } from './user-modal/user-modal.service';
 import { ConfirmModalService } from '../../components/confirm-modal/confirm-modal.service';
 
@@ -16,27 +16,26 @@ export class UserService {
     return factory;
   }
 
-  constructor(private json: User[],
+  constructor(private json: IUser[],
               private UserModalService: UserModalService,
               private ConfirmModalService: ConfirmModalService,
               private $q: angular.IQService,
               private $state: angular.ui.IStateService) { }
 
 
-  save(user: User) {
-    let index = this.json.findIndex((u: User) => {
+  save(user: IUser) {
+    let index = this.json.findIndex((u: IUser) => {
       return u.id === user.id;
     });
 
     this.json[index] = user;
   }
 
-
-  show(user: User) {
+  show(user: IUser) {
     this.UserModalService.show(user);
   }
 
-  goToEditPage(user: User) {
+  goToEditPage(user: IUser) {
     this.$state.transitionTo('userDetails', { id : user.id });
   }
 
@@ -44,19 +43,19 @@ export class UserService {
     return this.ConfirmModalService.confirm();
   }
 
-  get(id: number) : angular.IPromise<User> {
+  get(id: number) : angular.IPromise<IUser> {
     let user = this.findOne(id);
-    return this.promise(new User(user));
+    return this.promise(<IUser>user);
   }
 
-  delete(user: User) {
+  delete(user: IUser) {
     this.json = this.json.filter(e => e.id !== user.id);
     return this.promise(user);
   }
 
   page(page: number, rowsPerPage: number) {
     let start = (page - 1) * rowsPerPage + 1;
-    let tenRows = this.json.slice(start - 1, (start + rowsPerPage) - 1).map(x => new User(x));
+    let tenRows = this.json.slice(start - 1, (start + rowsPerPage) - 1).map(x => <IUser>(x));
 
     return this.promise(tenRows);
   }
@@ -65,10 +64,28 @@ export class UserService {
     return this.json.length;
   }
 
+  getAge(user: IUser): number {
+    var ageDif = this.ageDifFromBirth(user);
+    return this.calcuteDif(ageDif);
+  }
 
+  getFullName(user: IUser) {
+    return `${user.firstName} ${user.lastName}`;
+  }
+
+  private ageDifFromBirth(user: IUser) {
+    let now = Date.now();
+    let myBirthday = (new Date(user.dateOfBirth)).getTime();
+    return now - myBirthday;
+  }
+
+  private calcuteDif(ageDif: number) {
+    var ageDate = new Date(ageDif);  // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
 
   private findOne(id: number) {
-    let user = this.json.filter((u: User) => u.id === Number(id))[0];
+    let user = this.json.filter((u: IUser) => u.id === Number(id))[0];
     return user;
   }
 

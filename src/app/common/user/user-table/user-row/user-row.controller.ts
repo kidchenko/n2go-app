@@ -1,4 +1,4 @@
-import { User } from './../../user.model';
+import { IUser } from './../../user.model';
 
 export class UserRowController {
 
@@ -6,25 +6,25 @@ export class UserRowController {
 
   constructor(private eventEmitter: any) { }
 
-  show(user: User) {
+  show(user: IUser) {
     (<any>this).onShow(this.eventEmitter({
       user
     }));
   }
 
-  edit(user: User) {
+  edit(user: IUser) {
     (<any>this).onEdit(this.eventEmitter({
       user
     }));
   }
 
-  delete(user: User) {
+  delete(user: IUser) {
     (<any>this).onDelete(this.eventEmitter({
       user
     }));
   }
 
-  toggle(user: User) {
+  toggle(user: IUser) {
     (<any>this).onSelect(this.eventEmitter({
       user
     }));
