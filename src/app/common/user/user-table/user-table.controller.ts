@@ -1,10 +1,9 @@
 import { IUser } from './../user.model';
 import { UserService } from './../user.service';
 
-interface IUserTableEvent {
+export interface IUserTableEvent {
   user: IUser;
 }
-
 
 export class UserTableController {
 
@@ -23,6 +22,7 @@ export class UserTableController {
   }
 
   openShowModal($event: IUserTableEvent) {
+    console.log($event);
     this.userService.show($event.user);
   }
 

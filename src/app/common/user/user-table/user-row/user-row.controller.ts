@@ -1,10 +1,11 @@
 import { IUser } from './../../user.model';
+import { IUserTableEvent } from './../user-table.controller'
 
 export class UserRowController {
 
   static $inject: string[] = ['EventEmitter'];
 
-  constructor(private eventEmitter: any) { }
+  constructor(private eventEmitter: (e : IUserTableEvent) => void) { }
 
   show(user: IUser) {
     (<any>this).onShow(this.eventEmitter({
@@ -25,7 +26,7 @@ export class UserRowController {
   }
 
   toggle(user: IUser) {
-    (<any>this).onSelect(this.eventEmitter({
+    (<any>this).onSelect(this.eventEmitter( {
       user
     }));
   }
